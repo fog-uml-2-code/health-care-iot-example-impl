@@ -12,5 +12,5 @@ add_executable(bloodpressuresensor ${SRCS} ${COMMON_LIB_SRCS})
 
 target_include_directories(bloodpressuresensor PUBLIC "../common/src" "src/platform-include")
 
-target_link_libraries(bloodpressuresensor "jansson" "ulfius")
+target_link_libraries(bloodpressuresensor "jansson" "ulfius" "m")
 

@@ -1,16 +1,29 @@
 
 #include <fogPlatform.h>
 #include <BloodPressure.h>
-
-
+#include <Random.h>
 #include <BloodPressureSensor.h>
 
+#define MIN_SYSTOLIC 80
+#define MAX_SYSTOLIC 190
+#define MIN_DIASTOLIC 20
+#define MAX_DIASTOLIC 110
+
 struct BloodPressureSensor {
-	
+	Random random;
 };
 
 BloodPressureSensor newBloodPressureSensor() {
-	return calloc(1, sizeof(struct BloodPressureSensor));
+	BloodPressureSensor sensor = calloc(1, sizeof(struct BloodPressureSensor));
+	if (!sensor) {
+		return NULL;
+	}
+	sensor->random = newRandom();
+	if (!sensor->random) {
+		deleteBloodPressureSensor(sensor);
+		sensor = NULL;
+	}
+	return sensor;
 }
 
 void deleteBloodPressureSensor(BloodPressureSensor target) {
@@ -19,12 +32,17 @@ void deleteBloodPressureSensor(BloodPressureSensor target) {
 
 
 bool BloodPressureSensor_getBatteryLevel(BloodPressureSensor target, int_t *result) {
-	// ToDo: Set the value(s) of *result (if data type is a struct, copy all values) and then return true on success or false on failure.
+	*result = 80;
+	printf("getBatteryLevel() = %i\n", *result);
 	return true;
 }
 
 bool BloodPressureSensor_measureBloodPressure(BloodPressureSensor target, BloodPressure result) {
-	// ToDo: Set the value(s) of *result (if data type is a struct, copy all values) and then return true on success or false on failure.
+	int_t systolic = Random_next(target->random, MIN_SYSTOLIC, MAX_SYSTOLIC + 1);
+	int_t diastolic = Random_next(target->random, MIN_DIASTOLIC, fminl(MAX_DIASTOLIC + 1, systolic));
+	printf("measureBloodPressure() = %i/%i\n", systolic, diastolic);
+	BloodPressure_setMmHgSystolic(result, systolic);
+	BloodPressure_setMmHgDiastolic(result, diastolic);
 	return true;
 }
 
