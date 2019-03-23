@@ -22,5 +22,8 @@ set(COMMON_LIB_SRCS
 	"${CMAKE_CURRENT_LIST_DIR}/src/TreatmentPlan.h"
 	"${CMAKE_CURRENT_LIST_DIR}/src/TreatmentPlan_private.h"
 	"${CMAKE_CURRENT_LIST_DIR}/src/TreatmentPlan.c"
+
+	"${CMAKE_CURRENT_LIST_DIR}/src/Random.h"
+	"${CMAKE_CURRENT_LIST_DIR}/src/Random.c"
 )
 
