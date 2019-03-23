@@ -1,0 +1,22 @@
+micronaut:
+  application:
+    name: healthcare
+  http:
+    services:
+      bloodpressuresensor:
+        urls:
+          - http://localhost:8083/bloodpressuresensor
+      heartratesensor:
+        urls:
+          - http://localhost:8081/heartratesensor
+      bloodsugarsensor:
+        urls:
+          - http://localhost:8084/bloodsugarsensor
+      insulinpump:
+        urls:
+          - http://localhost:8085/insulinpump
+      temperaturesensor:
+        urls:
+          - http://localhost:8082/temperaturesensor
+      
+
