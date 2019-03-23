@@ -1,16 +1,27 @@
 
 #include <fogPlatform.h>
 #include <BodyTemperature.h>
-
-
 #include <TemperatureSensor.h>
+#include <Random.h>
+
+#define MIN_TEMPERATURE 30
+#define MAX_TEMPERATURE 42
 
 struct TemperatureSensor {
-	
+	Random random;
 };
 
 TemperatureSensor newTemperatureSensor() {
-	return calloc(1, sizeof(struct TemperatureSensor));
+	TemperatureSensor sensor = calloc(1, sizeof(struct TemperatureSensor));
+	if (!sensor) {
+		return NULL;
+	}
+	sensor->random = newRandom();
+	if (!sensor->random) {
+		deleteTemperatureSensor(sensor);
+		sensor = NULL;
+	}
+	return sensor;
 }
 
 void deleteTemperatureSensor(TemperatureSensor target) {
@@ -19,12 +30,15 @@ void deleteTemperatureSensor(TemperatureSensor target) {
 
 
 bool TemperatureSensor_getBatteryLevel(TemperatureSensor target, int_t *result) {
-	// ToDo: Set the value(s) of *result (if data type is a struct, copy all values) and then return true on success or false on failure.
+	*result = 90;
+	printf("getBatteryLevel() = %i\n", *result);
 	return true;
 }
 
 bool TemperatureSensor_measureTemperature(TemperatureSensor target, BodyTemperature result) {
-	// ToDo: Set the value(s) of *result (if data type is a struct, copy all values) and then return true on success or false on failure.
+	real_t temp = Random_next(target->random, MIN_TEMPERATURE, MAX_TEMPERATURE + 1);
+	printf("measureTemperature() = %f\n", temp);
+	BodyTemperature_setDegCelsius(result, temp);
 	return true;
 }
 
