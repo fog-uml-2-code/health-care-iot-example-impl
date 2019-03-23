@@ -3,7 +3,9 @@
 #include <BloodPressure.h>
 #include <Random.h>
 #include <BloodPressureSensor.h>
+#include <ErrorSimulator.h>
 
+#define ERROR_PROBABILITY 10
 #define MIN_SYSTOLIC 80
 #define MAX_SYSTOLIC 190
 #define MIN_DIASTOLIC 20
@@ -11,6 +13,7 @@
 
 struct BloodPressureSensor {
 	Random random;
+	ErrorSimulator errorSim;
 };
 
 BloodPressureSensor newBloodPressureSensor() {
@@ -19,7 +22,8 @@ BloodPressureSensor newBloodPressureSensor() {
 		return NULL;
 	}
 	sensor->random = newRandom();
-	if (!sensor->random) {
+	sensor->errorSim = newErrorSimulator(ERROR_PROBABILITY);
+	if (!sensor->random || !sensor->errorSim) {
 		deleteBloodPressureSensor(sensor);
 		sensor = NULL;
 	}
@@ -27,6 +31,12 @@ BloodPressureSensor newBloodPressureSensor() {
 }
 
 void deleteBloodPressureSensor(BloodPressureSensor target) {
+	if (target->errorSim) {
+		deleteErrorSimulator(target->errorSim);
+	}
+	if (target->random) {
+		deleteRandom(target->random);
+	}
 	free(target);
 }
 
@@ -38,6 +48,11 @@ bool BloodPressureSensor_getBatteryLevel(BloodPressureSensor target, int_t *resu
 }
 
 bool BloodPressureSensor_measureBloodPressure(BloodPressureSensor target, BloodPressure result) {
+	if (!ErrorSimulator_isNextOperationSuccessful(target->errorSim)) {
+		printf("measureBloodPressure() = Error\n");
+		return false;
+	}
+
 	int_t systolic = Random_next(target->random, MIN_SYSTOLIC, MAX_SYSTOLIC + 1);
 	int_t diastolic = Random_next(target->random, MIN_DIASTOLIC, fminl(MAX_DIASTOLIC + 1, systolic));
 	printf("measureBloodPressure() = %i/%i\n", systolic, diastolic);

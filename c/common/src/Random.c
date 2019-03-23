@@ -2,7 +2,7 @@
 #include <time.h>
 
 struct Random {
-	char stateBuf[8];
+	char stateBuf[256];
 	struct random_data randomData;
 };
 
