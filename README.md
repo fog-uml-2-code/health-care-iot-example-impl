@@ -4,7 +4,7 @@ A demo implementation of the code generated using [FogUML2Code](https://github.c
 
 
 ## Disclaimer
-We would like to note that we are NOT medical doctors and that this application only serves as a theoretic case study for our software engineering approach.
+We would like to note that we are NOT medical doctors and that this application only serves as a theoretic example use case for our software engineering approach.
 
 
 ## Fog Device Languages and Port Configurations
