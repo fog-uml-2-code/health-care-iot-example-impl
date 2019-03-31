@@ -15,7 +15,7 @@ import io.micronaut.http.client.annotation.Client;
  * 
  * @generated
  */
-@Client("bloodsugarsensor")
+@Client("${micronaut.http.services.bloodsugarsensor.urls}")
 public interface BloodSugarSensorClient extends BloodSugarSensor {
 
 	@Override

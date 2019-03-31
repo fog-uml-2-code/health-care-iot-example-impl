@@ -15,7 +15,7 @@ import io.micronaut.http.client.annotation.Client;
  * 
  * @generated
  */
-@Client("temperaturesensor")
+@Client("${micronaut.http.services.temperaturesensor.urls}")
 public interface TemperatureSensorClient extends TemperatureSensor {
 
 	@Override

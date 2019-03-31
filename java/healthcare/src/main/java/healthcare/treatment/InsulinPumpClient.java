@@ -17,7 +17,7 @@ import io.micronaut.http.client.annotation.Client;
  * 
  * @generated
  */
-@Client("insulinpump")
+@Client("${micronaut.http.services.insulinpump.urls}")
 public interface InsulinPumpClient extends InsulinPump {
 
 	@Override
