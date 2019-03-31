@@ -26,7 +26,6 @@ import javax.inject.*;
 @Singleton
 public class HealthMonitor {
 
-	private final static long MAX_MEASUREMENT_AGE_MSEC = 10 * 60 * 1000;
 	private static final Logger LOG = LoggerFactory.getLogger(HealthMonitor.class);
 
 	@Inject
@@ -39,32 +38,7 @@ public class HealthMonitor {
 	 * @generated
 	 */
 	public void evaluateHealthStatus() {
-		// This is NOT a real medical evaluation, it's just an example.
-		Measurement<Integer> heartRateM = activityState.getLastHeartRate();
-		Measurement<BloodPressure> bloodPressureM = activityState.getLastBloodPressure();
-		Measurement<BodyTemperature> bodyTempM = activityState.getLastBodyTemperature();
-		Measurement<BloodSugarLevel> bloodSugarM = activityState.getLastBloodSugarLevel();
-
-		boolean isCritical = false;
-		if (isMeasurementValid(heartRateM)) {
-			int heartRate = heartRateM.getMeasurement();
-			isCritical &= heartRate > 220 || heartRate < 30;
-		}
-		if (isMeasurementValid(bloodPressureM)) {
-			BloodPressure bloodPressure = bloodPressureM.getMeasurement();
-			isCritical &= bloodPressure.getMmHgSystolic() > 190 || bloodPressure.getMmHgSystolic() < 80;
-			isCritical &= bloodPressure.getMmHgDiastolic() > 120 || bloodPressure.getMmHgDiastolic() < 40;
-		}
-		if (isMeasurementValid(bodyTempM)) {
-			double bodyTemp = bodyTempM.getMeasurement().getDegCelsius();
-			isCritical &= bodyTemp > 40.0 || bodyTemp < 34.0;
-		}
-		if (isMeasurementValid(bloodSugarM)) {
-			double bloodSugar = bloodSugarM.getMeasurement().getMmolPerLiter();
-			isCritical &= bloodSugar < 3.0 || bloodSugar > 10;
-		}
-
-		activityState.updateHealthStatusCritical(isCritical);
+		LOG.info("evaluateHealthStatus()");
 	}
 	
 	/**
@@ -96,14 +70,5 @@ public class HealthMonitor {
 	public void checkForTreatmentUpdates() {
 		LOG.info("checkForTreatmentUpdates()");
 	}
-
-	private <T> boolean  isMeasurementValid(Measurement<T> measurement) {
-		if (measurement != null && measurement.getMeasurement() != null) {
-			long now = Instant.now().toEpochMilli();
-			return (now - measurement.getMeasuredAt().toEpochMilli()) < MAX_MEASUREMENT_AGE_MSEC;
-		}
-		return false;
-	}
-	
 
 }

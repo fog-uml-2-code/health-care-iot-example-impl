@@ -1,5 +1,7 @@
 package healthcare.monitoring.handlers.decisions;
 
+import healthcare.models.BloodSugarLevel;
+import healthcare.monitoring.state.Measurement;
 import io.micronaut.context.annotation.Prototype;
 import javax.inject.Inject;
 
@@ -21,24 +23,36 @@ public class AfterevaluateHealthStatus_call_Id9 {
 	 * @return true if the ActivityEdge guarded by this condition should be taken, otherwise false.
 	 */
 	public boolean BloodSugarIsCritical() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		Measurement<BloodSugarLevel> bloodSugarM = activityState.getLastBloodSugarLevel();
+		if (Measurement.isValid(bloodSugarM)) {
+			double bloodSugar = bloodSugarM.getMeasurement().getMmolPerLiter();
+			return bloodSugar < 3.0 || bloodSugar > 10;
+		}
+		return false;
 	}
 	/**
 	 * @generated
 	 * @return true if the ActivityEdge guarded by this condition should be taken, otherwise false.
 	 */
 	public boolean BloodSugarIsHigh() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		Measurement<BloodSugarLevel> bloodSugarM = activityState.getLastBloodSugarLevel();
+		if (Measurement.isValid(bloodSugarM)) {
+			double bloodSugar = bloodSugarM.getMeasurement().getMmolPerLiter();
+			return bloodSugar > 7.5;
+		}
+		return false;
 	}
 	/**
 	 * @generated
 	 * @return true if the ActivityEdge guarded by this condition should be taken, otherwise false.
 	 */
 	public boolean BloodSugarIsLow() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		Measurement<BloodSugarLevel> bloodSugarM = activityState.getLastBloodSugarLevel();
+		if (Measurement.isValid(bloodSugarM)) {
+			double bloodSugar = bloodSugarM.getMeasurement().getMmolPerLiter();
+			return bloodSugar < 3.5;
+		}
+		return false;
 	}
 
 }

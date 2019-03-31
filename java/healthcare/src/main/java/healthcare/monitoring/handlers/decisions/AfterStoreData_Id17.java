@@ -5,6 +5,8 @@ import javax.inject.Inject;
 
 import healthcare.monitoring.state.ActivityState;
 
+import java.time.Instant;
+
 /**
  * This is the DecisionNode handler for .
  * 
@@ -12,6 +14,8 @@ import healthcare.monitoring.state.ActivityState;
  */
 @Prototype
 public class AfterStoreData_Id17 {
+
+	private static final long ONE_DAY = 24 * 60 * 60 * 1000;
 
 	@Inject
 	private ActivityState activityState;
@@ -21,8 +25,8 @@ public class AfterStoreData_Id17 {
 	 * @return true if the ActivityEdge guarded by this condition should be taken, otherwise false.
 	 */
 	public boolean Is24HoursSinceLastDataSubmission() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		long now = Instant.now().toEpochMilli();
+		return now - activityState.getLastSubmissionToDoctor().toEpochMilli() >= ONE_DAY;
 	}
 
 }

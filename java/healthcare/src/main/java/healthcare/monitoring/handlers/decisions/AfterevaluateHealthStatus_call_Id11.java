@@ -1,5 +1,6 @@
 package healthcare.monitoring.handlers.decisions;
 
+import healthcare.monitoring.state.Measurement;
 import io.micronaut.context.annotation.Prototype;
 import javax.inject.Inject;
 
@@ -21,8 +22,12 @@ public class AfterevaluateHealthStatus_call_Id11 {
 	 * @return true if the ActivityEdge guarded by this condition should be taken, otherwise false.
 	 */
 	public boolean HeartRateIsAbnormal() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		Measurement<Integer> heartRateM = activityState.getLastHeartRate();
+		if (Measurement.isValid(heartRateM)) {
+			int heartRate = heartRateM.getMeasurement();
+			return heartRate > 220 || heartRate < 30;
+		}
+		return false;
 	}
 
 }

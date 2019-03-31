@@ -1,5 +1,7 @@
 package healthcare.monitoring.handlers.decisions;
 
+import healthcare.models.BloodPressure;
+import healthcare.monitoring.state.Measurement;
 import io.micronaut.context.annotation.Prototype;
 import javax.inject.Inject;
 
@@ -21,8 +23,14 @@ public class AfterevaluateHealthStatus_call_Id14 {
 	 * @return true if the ActivityEdge guarded by this condition should be taken, otherwise false.
 	 */
 	public boolean BloodPressureCritical() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		Measurement<BloodPressure> bloodPressureM = activityState.getLastBloodPressure();
+		boolean isCritical = false;
+		if (Measurement.isValid(bloodPressureM)) {
+			BloodPressure bloodPressure = bloodPressureM.getMeasurement();
+			isCritical = bloodPressure.getMmHgSystolic() > 190 || bloodPressure.getMmHgSystolic() < 80;
+			isCritical &= bloodPressure.getMmHgDiastolic() > 120 || bloodPressure.getMmHgDiastolic() < 40;
+		}
+		return isCritical;
 	}
 
 }
