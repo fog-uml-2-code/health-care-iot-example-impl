@@ -76,7 +76,10 @@ public class HealthDataStore {
 	}
 
 	private String getTime(Integer timestamp) {
-		return Instant.ofEpochMilli(timestamp).toString();
+		if (timestamp != null) {
+			return Instant.ofEpochMilli(timestamp).toString();
+		}
+		return "null";
 	}
 
 }
