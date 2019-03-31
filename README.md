@@ -20,3 +20,12 @@ The following table shows in which language the code for each fog device from th
 | InsulinPump         | Java            | 8085        |
 
 Since this is a demo for testing FogUML2Code, the ports are all different, such that all applications can be run on a single machine.
+
+
+## Compiling and Running the Demo
+
+To compile the programs in the [c](./c) folder you need [CMake](https://cmake.org) and the [ulfius](https://github.com/babelouest/ulfius) headers and link library (and all dependencies).
+
+To compile the programs in the [java](./java) folder you need [Maven](https://maven.apache.org) and you must install the [fog-execution-framework-java](https://github.com/fog-uml-2-code/fog-execution-framework-java) into your local Maven repository before building the demo modules.
+
+Once you have built all modules with CMake and Maven, you need to run all of the built executables (the sensors, the insulin pump, and the health care application).
