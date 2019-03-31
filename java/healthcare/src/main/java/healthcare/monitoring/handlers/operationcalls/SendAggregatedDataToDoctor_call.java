@@ -3,6 +3,9 @@ package healthcare.monitoring.handlers.operationcalls;
 import io.micronaut.context.annotation.Prototype;
 import io.micronaut.http.client.exceptions.HttpClientException;
 import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pusztai.thomas.architecture.fog.activity.realization.CallOperationActionHandler;
 import healthcare.monitoring.state.ActivityState;
 
@@ -15,6 +18,8 @@ import healthcare.monitoring.state.ActivityState;
 @Prototype
 public class SendAggregatedDataToDoctor_call implements CallOperationActionHandler<Void, Void> {
 
+	private static final Logger LOG = LoggerFactory.getLogger(SendAggregatedDataToDoctor_call.class);
+
 	@Inject
 	private ActivityState activityState;
 
@@ -24,8 +29,7 @@ public class SendAggregatedDataToDoctor_call implements CallOperationActionHandl
 	 */
 	@Override
 	public Void assembleParameters() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		return null;
 	}
 
 	/**
@@ -35,8 +39,7 @@ public class SendAggregatedDataToDoctor_call implements CallOperationActionHandl
 	 */
 	@Override
 	public void handleResult(Void result) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("sendAggregatedDataToDoctor() successful");
 	}
 
 	/**
@@ -45,8 +48,7 @@ public class SendAggregatedDataToDoctor_call implements CallOperationActionHandl
 	 * @param error The exception describing the error.
 	 */
 	public void handleError(HttpClientException error) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.error("Error", error);
 	}
 
 }

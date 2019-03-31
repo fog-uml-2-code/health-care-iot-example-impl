@@ -75,7 +75,6 @@ public class HealthMonitor {
 	 */
 	public void sendAggregatedDataToDoctor() {
 		LOG.info("sendAggregatedDataToDoctor()");
-		activityState.updateLastSubmissionToDoctor();
 	}
 	
 	/**
@@ -96,7 +95,6 @@ public class HealthMonitor {
 	 */
 	public void checkForTreatmentUpdates() {
 		LOG.info("checkForTreatmentUpdates()");
-		activityState.updateLastCheckForTreatmentUpdates();
 	}
 
 	private <T> boolean  isMeasurementValid(Measurement<T> measurement) {

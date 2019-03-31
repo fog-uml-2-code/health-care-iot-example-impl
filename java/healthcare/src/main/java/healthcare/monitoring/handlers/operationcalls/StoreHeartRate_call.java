@@ -1,8 +1,12 @@
 package healthcare.monitoring.handlers.operationcalls;
 
+import healthcare.monitoring.state.Measurement;
 import io.micronaut.context.annotation.Prototype;
 import io.micronaut.http.client.exceptions.HttpClientException;
 import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pusztai.thomas.architecture.fog.activity.realization.CallOperationActionHandler;
 import healthcare.monitoring.state.ActivityState;
 
@@ -16,6 +20,8 @@ import healthcare.monitoring.handlers.operationcalls.params.StoreHeartRate_callP
 @Prototype
 public class StoreHeartRate_call implements CallOperationActionHandler<StoreHeartRate_callParams, Void> {
 
+	private static final Logger LOG = LoggerFactory.getLogger(StoreHeartRate_call.class);
+
 	@Inject
 	private ActivityState activityState;
 
@@ -25,8 +31,13 @@ public class StoreHeartRate_call implements CallOperationActionHandler<StoreHear
 	 */
 	@Override
 	public StoreHeartRate_callParams assembleParameters() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		Measurement<Integer> heartRateM = activityState.getLastHeartRate();
+		StoreHeartRate_callParams params = new StoreHeartRate_callParams();
+		if (heartRateM != null && heartRateM.getMeasurement() != null) {
+			params.setBpm(heartRateM.getMeasurement());
+			params.setTimestamp((int) heartRateM.getMeasuredAt().toEpochMilli());
+		}
+		return params;
 	}
 
 	/**
@@ -36,8 +47,7 @@ public class StoreHeartRate_call implements CallOperationActionHandler<StoreHear
 	 */
 	@Override
 	public void handleResult(Void result) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("storeHeartRate() successful");
 	}
 
 	/**
@@ -46,8 +56,7 @@ public class StoreHeartRate_call implements CallOperationActionHandler<StoreHear
 	 * @param error The exception describing the error.
 	 */
 	public void handleError(HttpClientException error) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.error("Error", error);
 	}
 
 }

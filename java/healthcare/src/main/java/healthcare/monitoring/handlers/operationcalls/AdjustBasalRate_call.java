@@ -3,6 +3,9 @@ package healthcare.monitoring.handlers.operationcalls;
 import io.micronaut.context.annotation.Prototype;
 import io.micronaut.http.client.exceptions.HttpClientException;
 import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pusztai.thomas.architecture.fog.activity.realization.CallOperationActionHandler;
 import healthcare.monitoring.state.ActivityState;
 
@@ -16,6 +19,8 @@ import healthcare.models.BasalRate;
 @Prototype
 public class AdjustBasalRate_call implements CallOperationActionHandler<BasalRate, Void> {
 
+	private static final Logger LOG = LoggerFactory.getLogger(AdjustBasalRate_call.class);
+
 	@Inject
 	private ActivityState activityState;
 
@@ -25,8 +30,10 @@ public class AdjustBasalRate_call implements CallOperationActionHandler<BasalRat
 	 */
 	@Override
 	public BasalRate assembleParameters() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("assembleParameters()");
+		BasalRate basalRate = new BasalRate();
+		basalRate.setInsulinUnitsPerHour(2);
+		return basalRate;
 	}
 
 	/**
@@ -36,8 +43,7 @@ public class AdjustBasalRate_call implements CallOperationActionHandler<BasalRat
 	 */
 	@Override
 	public void handleResult(Void result) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("adjustBasalRate() successful");
 	}
 
 	/**
@@ -46,8 +52,7 @@ public class AdjustBasalRate_call implements CallOperationActionHandler<BasalRat
 	 * @param error The exception describing the error.
 	 */
 	public void handleError(HttpClientException error) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.error("Error", error);
 	}
 
 }

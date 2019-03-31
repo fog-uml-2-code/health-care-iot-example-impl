@@ -3,6 +3,9 @@ package healthcare.monitoring.handlers.operationcalls;
 import io.micronaut.context.annotation.Prototype;
 import io.micronaut.http.client.exceptions.HttpClientException;
 import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pusztai.thomas.architecture.fog.activity.realization.CallOperationActionHandler;
 import healthcare.monitoring.state.ActivityState;
 
@@ -16,6 +19,8 @@ import healthcare.models.BodyTemperature;
 @Prototype
 public class MeasureTemperature_call implements CallOperationActionHandler<Void, BodyTemperature> {
 
+	private static final Logger LOG = LoggerFactory.getLogger(MeasureTemperature_call.class);
+
 	@Inject
 	private ActivityState activityState;
 
@@ -25,8 +30,7 @@ public class MeasureTemperature_call implements CallOperationActionHandler<Void,
 	 */
 	@Override
 	public Void assembleParameters() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		return null;
 	}
 
 	/**
@@ -36,8 +40,8 @@ public class MeasureTemperature_call implements CallOperationActionHandler<Void,
 	 */
 	@Override
 	public void handleResult(BodyTemperature result) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("measureBodyTemperature() = {} deg C", result.getDegCelsius());
+		activityState.updateBodyTemperature(result);
 	}
 
 	/**
@@ -46,8 +50,7 @@ public class MeasureTemperature_call implements CallOperationActionHandler<Void,
 	 * @param error The exception describing the error.
 	 */
 	public void handleError(HttpClientException error) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.error("Error", error);
 	}
 
 }

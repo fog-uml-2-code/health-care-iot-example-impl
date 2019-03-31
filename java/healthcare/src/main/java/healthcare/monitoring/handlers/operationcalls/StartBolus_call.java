@@ -3,6 +3,9 @@ package healthcare.monitoring.handlers.operationcalls;
 import io.micronaut.context.annotation.Prototype;
 import io.micronaut.http.client.exceptions.HttpClientException;
 import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pusztai.thomas.architecture.fog.activity.realization.CallOperationActionHandler;
 import healthcare.monitoring.state.ActivityState;
 
@@ -16,6 +19,8 @@ import healthcare.models.Bolus;
 @Prototype
 public class StartBolus_call implements CallOperationActionHandler<Bolus, Void> {
 
+	private static final Logger LOG = LoggerFactory.getLogger(StartBolus_call.class);
+
 	@Inject
 	private ActivityState activityState;
 
@@ -25,8 +30,10 @@ public class StartBolus_call implements CallOperationActionHandler<Bolus, Void> 
 	 */
 	@Override
 	public Bolus assembleParameters() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		Bolus bolus = new Bolus();
+		bolus.setDurationMinutes(10);
+		bolus.setInsulinUnits(10);
+		return bolus;
 	}
 
 	/**
@@ -36,8 +43,7 @@ public class StartBolus_call implements CallOperationActionHandler<Bolus, Void> 
 	 */
 	@Override
 	public void handleResult(Void result) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("startBolus() successful");
 	}
 
 	/**
@@ -46,8 +52,7 @@ public class StartBolus_call implements CallOperationActionHandler<Bolus, Void> 
 	 * @param error The exception describing the error.
 	 */
 	public void handleError(HttpClientException error) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.error("Error", error);
 	}
 
 }
