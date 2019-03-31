@@ -2,6 +2,9 @@ package healthcare.sensors;
 
 // Start of user code for imports
 import java.util.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pusztai.thomas.architecture.fog.validation.*;
 
 
@@ -19,17 +22,26 @@ import io.micronaut.http.annotation.Controller;
 @Controller("/bloodsugarsensor")
 public class BloodSugarSensorController implements BloodSugarSensor {
 
+	private static final Logger LOG = LoggerFactory.getLogger(BloodSugarSensorController.class);
+	private static final double MIN_BLOOD_SUGAR = 2.5;
+	private static final double MAX_BLOOD_SUGAR = 10.5;
+
+	private final Random random = new Random();
 
 	@Override
 	public BloodSugarLevel measureBloodSugar() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		BloodSugarLevel bloodSugar = new BloodSugarLevel();
+		double r = random.nextDouble();
+		double mmolPerLiter = r * (MAX_BLOOD_SUGAR - MIN_BLOOD_SUGAR) + MIN_BLOOD_SUGAR;
+		bloodSugar.setMmolPerLiter(mmolPerLiter);
+		LOG.info("measureBloodSugar() = {}", mmolPerLiter);
+		return bloodSugar;
 	}
 	
 	@Override
 	public Integer getBatteryLevel() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("getBatteryLevel() = 80");
+		return 80;
 	}
 	
 
