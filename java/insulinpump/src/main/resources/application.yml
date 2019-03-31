@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: insulinpump
+  server:
+    port: 8085
+

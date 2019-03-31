@@ -1,0 +1,365 @@
+{
+    "activity": {
+        "name": "HealthCare",
+        "initialNode": "0",
+        "nodes": [
+            {
+                "id": "32",
+                "type": "AcceptTimeEventAction",
+                "name": "PT1M",
+                "durationMsec": 60000,
+                "nextNode": "3"
+            },
+            {
+                "id": "28",
+                "type": "CallOperationAction",
+                "name": "adjustBasalRate_call",
+                "target": "healthcare.treatment.InsulinPumpClient",
+                "operation": "adjustBasalRate",
+                "handler": "healthcare.monitoring.handlers.operationcalls.AdjustBasalRate_call",
+                
+                "nextNode": "15"
+            },
+            {
+                "id": "11",
+                "type": "DecisionNode",
+                "name": "",
+                "handler": "healthcare.monitoring.handlers.decisions.AfterevaluateHealthStatus_call_Id11",
+                
+                "conditions": [
+                    {
+                        "condition": "HeartRateIsAbnormal",
+                        "nextNode": "13"
+                    }
+                ],
+                "elseNextNode": "24"
+            },
+            {
+                "id": "20",
+                "type": "DecisionNode",
+                "name": "",
+                "handler": "healthcare.monitoring.handlers.decisions.AfterStoreData_Id20",
+                
+                "conditions": [
+                    {
+                        "condition": "Is1HourSinceLastUpdateCheck",
+                        "nextNode": "21"
+                    }
+                ],
+                "elseNextNode": "22"
+            },
+            {
+                "id": "23",
+                "type": "ForkNode",
+                "name": "",
+                "nextNodes": [
+                    "11",
+                    "9"
+                ]
+            },
+            {
+                "id": "24",
+                "type": "MergeNode",
+                "name": "",
+                "prevNodes": [
+                    "11",
+                    "14"
+                ],
+                "nextNode": "26"
+            },
+            {
+                "id": "27",
+                "type": "CallOperationAction",
+                "name": "evaluateHealthStatus_call",
+                "target": "healthcare.monitoring.HealthMonitor",
+                "operation": "evaluateHealthStatus",
+                "handler": "healthcare.monitoring.handlers.operationcalls.EvaluateHealthStatus_call",
+                
+                "nextNode": "23"
+            },
+            {
+                "id": "10",
+                "type": "CallOperationAction",
+                "name": "callAmbulance_call",
+                "target": "healthcare.monitoring.HealthMonitor",
+                "operation": "callAmbulance",
+                "handler": "healthcare.monitoring.handlers.operationcalls.CallAmbulance_call",
+                
+                "nextNode": "15"
+            },
+            {
+                "id": "18",
+                "type": "CallOperationAction",
+                "name": "sendAggregatedDataToDoctor_call",
+                "target": "healthcare.monitoring.HealthMonitor",
+                "operation": "sendAggregatedDataToDoctor",
+                "handler": "healthcare.monitoring.handlers.operationcalls.SendAggregatedDataToDoctor_call",
+                
+                "nextNode": "19"
+            },
+            {
+                "id": "3",
+                "type": "ForkNode",
+                "name": "QueryData",
+                "nextNodes": [
+                    "7",
+                    "4",
+                    "5"
+                ]
+            },
+            {
+                "id": "17",
+                "type": "DecisionNode",
+                "name": "",
+                "handler": "healthcare.monitoring.handlers.decisions.AfterStoreData_Id17",
+                
+                "conditions": [
+                    {
+                        "condition": "Is24HoursSinceLastDataSubmission",
+                        "nextNode": "18"
+                    }
+                ],
+                "elseNextNode": "19"
+            },
+            {
+                "id": "26",
+                "type": "JoinNode",
+                "name": "",
+                "prevNodes": [
+                    "15",
+                    "24"
+                ],
+                "nextNode": "16"
+            },
+            {
+                "id": "15",
+                "type": "MergeNode",
+                "name": "",
+                "prevNodes": [
+                    "29",
+                    "28",
+                    "10",
+                    "9"
+                ],
+                "nextNode": "26"
+            },
+            {
+                "id": "7",
+                "type": "DecisionNode",
+                "name": "",
+                "handler": "healthcare.monitoring.handlers.decisions.AfterQueryData_Id7",
+                
+                "conditions": [
+                    {
+                        "condition": "LastBloodPressureCheckOlderThan1Hour",
+                        "nextNode": "8"
+                    }
+                ],
+                "elseNextNode": "6"
+            },
+            {
+                "id": "31",
+                "type": "CallOperationAction",
+                "name": "getHeartRate_call",
+                "target": "healthcare.sensors.HeartRateSensorClient",
+                "operation": "getHeartRate",
+                "handler": "healthcare.monitoring.handlers.operationcalls.GetHeartRate_call",
+                
+                "nextNode": "30"
+            },
+            {
+                "id": "1",
+                "type": "ForkNode",
+                "name": "Init",
+                "nextNodes": [
+                    "3",
+                    "31"
+                ]
+            },
+            {
+                "id": "22",
+                "type": "MergeNode",
+                "name": "",
+                "prevNodes": [
+                    "20",
+                    "21"
+                ],
+                "nextNode": "32"
+            },
+            {
+                "id": "6",
+                "type": "JoinNode",
+                "name": "CombineData",
+                "prevNodes": [
+                    "8",
+                    "7",
+                    "4",
+                    "5"
+                ],
+                "nextNode": "27"
+            },
+            {
+                "id": "13",
+                "type": "DecisionNode",
+                "name": "",
+                "handler": "healthcare.monitoring.handlers.decisions.AfterevaluateHealthStatus_call_Id13",
+                
+                "conditions": [
+                    {
+                        "condition": "BloodPressureDataOlderThan4Minutes",
+                        "nextNode": "12"
+                    }
+                ],
+                "elseNextNode": "14"
+            },
+            {
+                "id": "4",
+                "type": "CallOperationAction",
+                "name": "measureBloodSugar_call",
+                "target": "healthcare.sensors.BloodSugarSensorClient",
+                "operation": "measureBloodSugar",
+                "handler": "healthcare.monitoring.handlers.operationcalls.MeasureBloodSugar_call",
+                
+                "nextNode": "6"
+            },
+            {
+                "id": "5",
+                "type": "CallOperationAction",
+                "name": "measureTemperature_call",
+                "target": "healthcare.sensors.TemperatureSensorClient",
+                "operation": "measureTemperature",
+                "handler": "healthcare.monitoring.handlers.operationcalls.MeasureTemperature_call",
+                
+                "nextNode": "6"
+            },
+            {
+                "id": "16",
+                "type": "OpaqueAction",
+                "name": "Store Data",
+                "handler": "healthcare.monitoring.handlers.opaqueactions.StoreData",
+                
+                "nextNode": "17"
+            },
+            {
+                "id": "21",
+                "type": "CallOperationAction",
+                "name": "checkForTreatmentUpdates_call",
+                "target": "healthcare.monitoring.HealthMonitor",
+                "operation": "checkForTreatmentUpdates",
+                "handler": "healthcare.monitoring.handlers.operationcalls.CheckForTreatmentUpdates_call",
+                
+                "nextNode": "22"
+            },
+            {
+                "id": "25",
+                "type": "MergeNode",
+                "name": "",
+                "prevNodes": [
+                    "14",
+                    "9"
+                ],
+                "nextNode": "10"
+            },
+            {
+                "id": "8",
+                "type": "CallOperationAction",
+                "name": "measureBloodPressureStd_call",
+                "target": "healthcare.sensors.BloodPressureSensorClient",
+                "operation": "measureBloodPressure",
+                "handler": "healthcare.monitoring.handlers.operationcalls.MeasureBloodPressureStd_call",
+                
+                "nextNode": "6"
+            },
+            {
+                "id": "29",
+                "type": "CallOperationAction",
+                "name": "startBolus_call",
+                "target": "healthcare.treatment.InsulinPumpClient",
+                "operation": "startBolus",
+                "handler": "healthcare.monitoring.handlers.operationcalls.StartBolus_call",
+                
+                "nextNode": "15"
+            },
+            {
+                "id": "12",
+                "type": "CallOperationAction",
+                "name": "measureBloodPressureEmergency_call",
+                "target": "healthcare.sensors.BloodPressureSensorClient",
+                "operation": "measureBloodPressure",
+                "handler": "healthcare.monitoring.handlers.operationcalls.MeasureBloodPressureEmergency_call",
+                
+                "nextNode": "14"
+            },
+            {
+                "id": "2",
+                "type": "AcceptTimeEventAction",
+                "name": "PT1S",
+                "durationMsec": 1000,
+                "nextNode": "31"
+            },
+            {
+                "id": "19",
+                "type": "MergeNode",
+                "name": "",
+                "prevNodes": [
+                    "17",
+                    "18"
+                ],
+                "nextNode": "20"
+            },
+            {
+                "id": "14",
+                "type": "DecisionNode",
+                "name": "",
+                "handler": "healthcare.monitoring.handlers.decisions.AfterevaluateHealthStatus_call_Id14",
+                
+                "conditions": [
+                    {
+                        "condition": "BloodPressureCritical",
+                        "nextNode": "25"
+                    }
+                ],
+                "elseNextNode": "24"
+            },
+            {
+                "id": "9",
+                "type": "DecisionNode",
+                "name": "",
+                "handler": "healthcare.monitoring.handlers.decisions.AfterevaluateHealthStatus_call_Id9",
+                
+                "conditions": [
+                    {
+                        "condition": "BloodSugarIsCritical",
+                        "nextNode": "25"
+                    },
+                    {
+                        "condition": "BloodSugarIsHigh",
+                        "nextNode": "29"
+                    },
+                    {
+                        "condition": "BloodSugarIsLow",
+                        "nextNode": "28"
+                    }
+                ],
+                "elseNextNode": "15"
+            },
+            {
+                "id": "30",
+                "type": "CallOperationAction",
+                "name": "storeHeartRate_call",
+                "target": "healthcare.monitoring.HealthDataStore",
+                "operation": "storeHeartRate",
+                "handler": "healthcare.monitoring.handlers.operationcalls.StoreHeartRate_call",	
+                
+                
+                "nextNode": "2"
+            },
+            {
+                "id": "0",
+                "type": "InitialNode",
+                "name": "Start",
+                "nextNode": "1"
+            }
+        ]
+    }
+}

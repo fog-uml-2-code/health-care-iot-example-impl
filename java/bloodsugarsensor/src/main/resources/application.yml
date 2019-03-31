@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: bloodsugarsensor
+  server:
+    port: 8084
+
