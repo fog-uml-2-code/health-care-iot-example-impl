@@ -1,7 +1,12 @@
 package healthcare.monitoring;
 
 // Start of user code for imports
+import java.time.Instant;
 import java.util.*;
+
+import healthcare.monitoring.state.ActivityState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pusztai.thomas.architecture.fog.validation.*;
 
 
@@ -20,8 +25,7 @@ import javax.inject.*;
 @Singleton
 public class HealthDataStore {
 
-	
-	
+	private static final Logger LOG = LoggerFactory.getLogger(HealthDataStore.class);
 
 	/**
 	 * Documentation of the method storeHeartRate.
@@ -32,8 +36,7 @@ public class HealthDataStore {
 	 * @generated
 	 */
 	public void storeHeartRate(Integer timestamp, Integer bpm) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("storeHeartRate(time: {}, bpm: {})", getTime(timestamp), bpm);
 	}
 	
 	/**
@@ -45,8 +48,7 @@ public class HealthDataStore {
 	 * @generated
 	 */
 	public void storeBodyTemperature(Integer timestamp, BodyTemperature temperature) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("storeBodyTemperature(time: {}, temp: {})", getTime(timestamp), temperature.getDegCelsius());
 	}
 	
 	/**
@@ -58,8 +60,7 @@ public class HealthDataStore {
 	 * @generated
 	 */
 	public void storeBloodSugarLevel(Integer timestamp, BloodSugarLevel sugarLevel) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("storeBloodSugarLevel(time: {}, mmolPerLiter: {})", getTime(timestamp), sugarLevel.getMmolPerLiter());
 	}
 	
 	/**
@@ -71,9 +72,11 @@ public class HealthDataStore {
 	 * @generated
 	 */
 	public void storeBloodPressure(Integer timestamp, BloodPressure bloodPressure) {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("storeBloodPressure(time: {}, bloodPressure: {}/{}", getTime(timestamp), bloodPressure.getMmHgSystolic(), bloodPressure.getMmHgDiastolic());
 	}
-	
+
+	private String getTime(Integer timestamp) {
+		return Instant.ofEpochMilli(timestamp).toString();
+	}
 
 }

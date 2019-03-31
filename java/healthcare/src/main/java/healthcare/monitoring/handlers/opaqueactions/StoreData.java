@@ -1,7 +1,15 @@
 package healthcare.monitoring.handlers.opaqueactions;
 
+import healthcare.models.BloodPressure;
+import healthcare.models.BloodSugarLevel;
+import healthcare.models.BodyTemperature;
+import healthcare.monitoring.HealthDataStore;
+import healthcare.monitoring.state.Measurement;
 import io.micronaut.context.annotation.Prototype;
 import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pusztai.thomas.architecture.fog.activity.realization.OpaqueActionHandler;
 
 import healthcare.monitoring.state.ActivityState;
@@ -14,8 +22,13 @@ import healthcare.monitoring.state.ActivityState;
 @Prototype
 public class StoreData implements OpaqueActionHandler {
 
+	private static final Logger LOG = LoggerFactory.getLogger(StoreData.class);
+
 	@Inject
 	private ActivityState activityState;
+
+	@Inject
+	private HealthDataStore healthDataStore;
 
 	/**
 	 * Executes the OpaqueAction.
@@ -24,8 +37,20 @@ public class StoreData implements OpaqueActionHandler {
 	 */
 	@Override
 	public void executeAction() {
-		// ToDo: Implement this method.
-		throw new UnsupportedOperationException("This method is not yet implemented");
+		LOG.info("StoreData");
+		Measurement<BloodPressure> bloodPressureM = activityState.getLastBloodPressure();
+		Measurement<BodyTemperature> bodyTempM = activityState.getLastBodyTemperature();
+		Measurement<BloodSugarLevel> bloodSugarM = activityState.getLastBloodSugarLevel();
+
+		if (bloodPressureM != null) {
+			healthDataStore.storeBloodPressure((int) bloodPressureM.getMeasuredAt().toEpochMilli(), bloodPressureM.getMeasurement());
+		}
+		if (bodyTempM != null) {
+			healthDataStore.storeBodyTemperature((int) bodyTempM.getMeasuredAt().toEpochMilli(), bodyTempM.getMeasurement());
+		}
+		if (bloodSugarM != null) {
+			healthDataStore.storeBloodSugarLevel((int) bloodSugarM.getMeasuredAt().toEpochMilli(), bloodSugarM.getMeasurement());
+		}
 	}
 
 }
