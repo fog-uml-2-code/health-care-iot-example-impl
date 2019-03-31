@@ -21,10 +21,11 @@ import io.micronaut.http.client.annotation.Client;
 public interface InsulinPumpClient extends InsulinPump {
 
 	@Override
-	void setCurrentTime(int timestamp);
+	void setCurrentTime(Integer timestamp);
 	
 	@Override
-	int getBatteryLevel();
+	@PreCondition(PreStartBolus.class)
+	void startBolus(Bolus bolus);
 	
 	@Override
 	InsulinPumpState getCurrentState();
@@ -34,7 +35,6 @@ public interface InsulinPumpClient extends InsulinPump {
 	void adjustBasalRate(BasalRate rate);
 	
 	@Override
-	@PreCondition(PreStartBolus.class)
-	void startBolus(Bolus bolus);
+	Integer getBatteryLevel();
 	
 }

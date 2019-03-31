@@ -20,16 +20,6 @@ import io.micronaut.http.annotation.Post;
 public interface TemperatureSensor {
 
 	/**
-	 * Documentation of the method getBatteryLevel.
-	 * 
-	 * @return
-	 * 
-	 * @generated
-	 */
-	@Get("/getbatterylevel")
-	int getBatteryLevel();
-	
-	/**
 	 * Documentation of the method measureTemperature.
 	 * 
 	 * @return
@@ -38,5 +28,15 @@ public interface TemperatureSensor {
 	 */
 	@Get("/measuretemperature")
 	BodyTemperature measureTemperature();
+	
+	/**
+	 * Documentation of the method getBatteryLevel.
+	 * 
+	 * @return
+	 * 
+	 * @generated
+	 */
+	@Get("/getbatterylevel")
+	Integer getBatteryLevel();
 	
 }

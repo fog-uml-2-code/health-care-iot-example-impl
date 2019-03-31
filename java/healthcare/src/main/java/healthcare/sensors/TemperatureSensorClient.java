@@ -19,9 +19,9 @@ import io.micronaut.http.client.annotation.Client;
 public interface TemperatureSensorClient extends TemperatureSensor {
 
 	@Override
-	int getBatteryLevel();
+	BodyTemperature measureTemperature();
 	
 	@Override
-	BodyTemperature measureTemperature();
+	Integer getBatteryLevel();
 	
 }

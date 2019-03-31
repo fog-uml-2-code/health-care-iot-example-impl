@@ -29,17 +29,18 @@ public interface InsulinPump {
 	 * @generated
 	 */
 	@Post("/setcurrenttime")
-	void setCurrentTime(int timestamp);
+	void setCurrentTime(Integer timestamp);
 	
 	/**
-	 * Documentation of the method getBatteryLevel.
+	 * Documentation of the method startBolus.
 	 * 
-	 * @return
+	 * @param bolus
 	 * 
 	 * @generated
 	 */
-	@Get("/getbatterylevel")
-	int getBatteryLevel();
+	@Post("/startbolus")
+	@PreCondition(PreStartBolus.class)
+	void startBolus(Bolus bolus);
 	
 	/**
 	 * Documentation of the method getCurrentState.
@@ -63,14 +64,13 @@ public interface InsulinPump {
 	void adjustBasalRate(BasalRate rate);
 	
 	/**
-	 * Documentation of the method startBolus.
+	 * Documentation of the method getBatteryLevel.
 	 * 
-	 * @param bolus
+	 * @return
 	 * 
 	 * @generated
 	 */
-	@Post("/startbolus")
-	@PreCondition(PreStartBolus.class)
-	void startBolus(Bolus bolus);
+	@Get("/getbatterylevel")
+	Integer getBatteryLevel();
 	
 }

@@ -23,13 +23,14 @@ public class InsulinPumpController implements InsulinPump {
 
 
 	@Override
-	public void setCurrentTime(int timestamp) {
+	public void setCurrentTime(Integer timestamp) {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}
 	
 	@Override
-	public int getBatteryLevel() {
+	@PreCondition(PreStartBolus.class)
+	public void startBolus(Bolus bolus) {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}
@@ -48,8 +49,7 @@ public class InsulinPumpController implements InsulinPump {
 	}
 	
 	@Override
-	@PreCondition(PreStartBolus.class)
-	public void startBolus(Bolus bolus) {
+	public Integer getBatteryLevel() {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}

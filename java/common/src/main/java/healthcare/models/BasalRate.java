@@ -15,7 +15,7 @@ import pusztai.thomas.architecture.fog.validation.*;
  */
 public class BasalRate {
 
-	private int insulinUnitsPerHour;
+	private Integer insulinUnitsPerHour;
 	
 	
 	/**
@@ -23,7 +23,7 @@ public class BasalRate {
 	 * 
 	 * @generated
 	 */
-	public int getInsulinUnitsPerHour() {
+	public Integer getInsulinUnitsPerHour() {
 		return insulinUnitsPerHour;
 	}
 	
@@ -32,7 +32,7 @@ public class BasalRate {
 	 * 
 	 * @generated
 	 */
-	public void setInsulinUnitsPerHour(int insulinUnitsPerHour) {
+	public void setInsulinUnitsPerHour(Integer insulinUnitsPerHour) {
 		this.insulinUnitsPerHour = insulinUnitsPerHour;
 	}
 	

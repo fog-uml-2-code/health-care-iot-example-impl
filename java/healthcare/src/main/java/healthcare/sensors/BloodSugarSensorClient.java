@@ -19,9 +19,9 @@ import io.micronaut.http.client.annotation.Client;
 public interface BloodSugarSensorClient extends BloodSugarSensor {
 
 	@Override
-	int getBatteryLevel();
+	BloodSugarLevel measureBloodSugar();
 	
 	@Override
-	BloodSugarLevel measureBloodSugar();
+	Integer getBatteryLevel();
 	
 }

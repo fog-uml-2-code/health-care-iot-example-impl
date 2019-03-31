@@ -17,43 +17,25 @@ import healthcare.treatment.TreatmentPlan;
  @Invariant(MaxInsulinDosage.class)
 public class InsulinPumpState {
 
-	private int insulinUnitsAdministeredLast24Hours;
-	
-	private int timeLastBolusEnded;
-	
-	private int currentTime;
+	private Integer timeLastBolusEnded;
 	
 	private TreatmentPlan treatmentPlan;
 	
-	private int insulinUnitsAdministeredLastHour;
-	
 	private Bolus bolus;
 	
+	private Integer insulinUnitsAdministeredLastHour;
 	
-	/**
-	 * @return the insulinUnitsAdministeredLast24Hours
-	 * 
-	 * @generated
-	 */
-	public int getInsulinUnitsAdministeredLast24Hours() {
-		return insulinUnitsAdministeredLast24Hours;
-	}
+	private Integer currentTime;
 	
-	/**
-	 * @param insulinUnitsAdministeredLast24Hours the insulinUnitsAdministeredLast24Hours to set.
-	 * 
-	 * @generated
-	 */
-	public void setInsulinUnitsAdministeredLast24Hours(int insulinUnitsAdministeredLast24Hours) {
-		this.insulinUnitsAdministeredLast24Hours = insulinUnitsAdministeredLast24Hours;
-	}
+	private Integer insulinUnitsAdministeredLast24Hours;
+	
 	
 	/**
 	 * @return the timeLastBolusEnded
 	 * 
 	 * @generated
 	 */
-	public int getTimeLastBolusEnded() {
+	public Integer getTimeLastBolusEnded() {
 		return timeLastBolusEnded;
 	}
 	
@@ -62,26 +44,8 @@ public class InsulinPumpState {
 	 * 
 	 * @generated
 	 */
-	public void setTimeLastBolusEnded(int timeLastBolusEnded) {
+	public void setTimeLastBolusEnded(Integer timeLastBolusEnded) {
 		this.timeLastBolusEnded = timeLastBolusEnded;
-	}
-	
-	/**
-	 * @return the currentTime
-	 * 
-	 * @generated
-	 */
-	public int getCurrentTime() {
-		return currentTime;
-	}
-	
-	/**
-	 * @param currentTime the currentTime to set.
-	 * 
-	 * @generated
-	 */
-	public void setCurrentTime(int currentTime) {
-		this.currentTime = currentTime;
 	}
 	
 	/**
@@ -103,24 +67,6 @@ public class InsulinPumpState {
 	}
 	
 	/**
-	 * @return the insulinUnitsAdministeredLastHour
-	 * 
-	 * @generated
-	 */
-	public int getInsulinUnitsAdministeredLastHour() {
-		return insulinUnitsAdministeredLastHour;
-	}
-	
-	/**
-	 * @param insulinUnitsAdministeredLastHour the insulinUnitsAdministeredLastHour to set.
-	 * 
-	 * @generated
-	 */
-	public void setInsulinUnitsAdministeredLastHour(int insulinUnitsAdministeredLastHour) {
-		this.insulinUnitsAdministeredLastHour = insulinUnitsAdministeredLastHour;
-	}
-	
-	/**
 	 * @return the bolus
 	 * 
 	 * @generated
@@ -136,6 +82,60 @@ public class InsulinPumpState {
 	 */
 	public void setBolus(Bolus bolus) {
 		this.bolus = bolus;
+	}
+	
+	/**
+	 * @return the insulinUnitsAdministeredLastHour
+	 * 
+	 * @generated
+	 */
+	public Integer getInsulinUnitsAdministeredLastHour() {
+		return insulinUnitsAdministeredLastHour;
+	}
+	
+	/**
+	 * @param insulinUnitsAdministeredLastHour the insulinUnitsAdministeredLastHour to set.
+	 * 
+	 * @generated
+	 */
+	public void setInsulinUnitsAdministeredLastHour(Integer insulinUnitsAdministeredLastHour) {
+		this.insulinUnitsAdministeredLastHour = insulinUnitsAdministeredLastHour;
+	}
+	
+	/**
+	 * @return the currentTime
+	 * 
+	 * @generated
+	 */
+	public Integer getCurrentTime() {
+		return currentTime;
+	}
+	
+	/**
+	 * @param currentTime the currentTime to set.
+	 * 
+	 * @generated
+	 */
+	public void setCurrentTime(Integer currentTime) {
+		this.currentTime = currentTime;
+	}
+	
+	/**
+	 * @return the insulinUnitsAdministeredLast24Hours
+	 * 
+	 * @generated
+	 */
+	public Integer getInsulinUnitsAdministeredLast24Hours() {
+		return insulinUnitsAdministeredLast24Hours;
+	}
+	
+	/**
+	 * @param insulinUnitsAdministeredLast24Hours the insulinUnitsAdministeredLast24Hours to set.
+	 * 
+	 * @generated
+	 */
+	public void setInsulinUnitsAdministeredLast24Hours(Integer insulinUnitsAdministeredLast24Hours) {
+		this.insulinUnitsAdministeredLast24Hours = insulinUnitsAdministeredLast24Hours;
 	}
 	
 	

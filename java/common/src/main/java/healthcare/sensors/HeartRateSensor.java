@@ -19,16 +19,6 @@ import io.micronaut.http.annotation.Post;
 public interface HeartRateSensor {
 
 	/**
-	 * Documentation of the method getBatteryLevel.
-	 * 
-	 * @return
-	 * 
-	 * @generated
-	 */
-	@Get("/getbatterylevel")
-	int getBatteryLevel();
-	
-	/**
 	 * Documentation of the method getHeartRate.
 	 * 
 	 * @return
@@ -36,6 +26,16 @@ public interface HeartRateSensor {
 	 * @generated
 	 */
 	@Get("/getheartrate")
-	int getHeartRate();
+	Integer getHeartRate();
+	
+	/**
+	 * Documentation of the method getBatteryLevel.
+	 * 
+	 * @return
+	 * 
+	 * @generated
+	 */
+	@Get("/getbatterylevel")
+	Integer getBatteryLevel();
 	
 }

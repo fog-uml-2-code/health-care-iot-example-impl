@@ -19,9 +19,9 @@ import io.micronaut.http.client.annotation.Client;
 public interface BloodPressureSensorClient extends BloodPressureSensor {
 
 	@Override
-	int getBatteryLevel();
+	BloodPressure measureBloodPressure();
 	
 	@Override
-	BloodPressure measureBloodPressure();
+	Integer getBatteryLevel();
 	
 }

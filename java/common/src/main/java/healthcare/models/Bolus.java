@@ -15,9 +15,9 @@ import pusztai.thomas.architecture.fog.validation.*;
  */
 public class Bolus {
 
-	private int insulinUnits;
+	private Integer insulinUnits;
 	
-	private int durationMinutes;
+	private Integer durationMinutes;
 	
 	
 	/**
@@ -25,7 +25,7 @@ public class Bolus {
 	 * 
 	 * @generated
 	 */
-	public int getInsulinUnits() {
+	public Integer getInsulinUnits() {
 		return insulinUnits;
 	}
 	
@@ -34,7 +34,7 @@ public class Bolus {
 	 * 
 	 * @generated
 	 */
-	public void setInsulinUnits(int insulinUnits) {
+	public void setInsulinUnits(Integer insulinUnits) {
 		this.insulinUnits = insulinUnits;
 	}
 	
@@ -43,7 +43,7 @@ public class Bolus {
 	 * 
 	 * @generated
 	 */
-	public int getDurationMinutes() {
+	public Integer getDurationMinutes() {
 		return durationMinutes;
 	}
 	
@@ -52,7 +52,7 @@ public class Bolus {
 	 * 
 	 * @generated
 	 */
-	public void setDurationMinutes(int durationMinutes) {
+	public void setDurationMinutes(Integer durationMinutes) {
 		this.durationMinutes = durationMinutes;
 	}
 	

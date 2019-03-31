@@ -15,7 +15,7 @@ import pusztai.thomas.architecture.fog.validation.*;
  */
 public class BodyTemperature {
 
-	private double degCelsius;
+	private Double degCelsius;
 	
 	
 	/**
@@ -23,7 +23,7 @@ public class BodyTemperature {
 	 * 
 	 * @generated
 	 */
-	public double getDegCelsius() {
+	public Double getDegCelsius() {
 		return degCelsius;
 	}
 	
@@ -32,7 +32,7 @@ public class BodyTemperature {
 	 * 
 	 * @generated
 	 */
-	public void setDegCelsius(double degCelsius) {
+	public void setDegCelsius(Double degCelsius) {
 		this.degCelsius = degCelsius;
 	}
 	

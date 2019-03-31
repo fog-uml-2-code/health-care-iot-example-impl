@@ -15,7 +15,7 @@ import pusztai.thomas.architecture.fog.validation.*;
  */
 public class BloodSugarLevel {
 
-	private int mmolPerLiter;
+	private Double mmolPerLiter;
 	
 	
 	/**
@@ -23,7 +23,7 @@ public class BloodSugarLevel {
 	 * 
 	 * @generated
 	 */
-	public int getMmolPerLiter() {
+	public Double getMmolPerLiter() {
 		return mmolPerLiter;
 	}
 	
@@ -32,7 +32,7 @@ public class BloodSugarLevel {
 	 * 
 	 * @generated
 	 */
-	public void setMmolPerLiter(int mmolPerLiter) {
+	public void setMmolPerLiter(Double mmolPerLiter) {
 		this.mmolPerLiter = mmolPerLiter;
 	}
 	

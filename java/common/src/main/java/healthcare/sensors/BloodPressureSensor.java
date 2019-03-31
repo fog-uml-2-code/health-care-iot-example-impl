@@ -20,16 +20,6 @@ import io.micronaut.http.annotation.Post;
 public interface BloodPressureSensor {
 
 	/**
-	 * Documentation of the method getBatteryLevel.
-	 * 
-	 * @return
-	 * 
-	 * @generated
-	 */
-	@Get("/getbatterylevel")
-	int getBatteryLevel();
-	
-	/**
 	 * Documentation of the method measureBloodPressure.
 	 * 
 	 * @return
@@ -38,5 +28,15 @@ public interface BloodPressureSensor {
 	 */
 	@Get("/measurebloodpressure")
 	BloodPressure measureBloodPressure();
+	
+	/**
+	 * Documentation of the method getBatteryLevel.
+	 * 
+	 * @return
+	 * 
+	 * @generated
+	 */
+	@Get("/getbatterylevel")
+	Integer getBatteryLevel();
 	
 }

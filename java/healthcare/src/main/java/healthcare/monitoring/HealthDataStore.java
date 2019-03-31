@@ -31,7 +31,7 @@ public class HealthDataStore {
 	 * 
 	 * @generated
 	 */
-	public void storeHeartRate(int timestamp, int bpm) {
+	public void storeHeartRate(Integer timestamp, Integer bpm) {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}
@@ -44,7 +44,7 @@ public class HealthDataStore {
 	 * 
 	 * @generated
 	 */
-	public void storeBodyTemperature(int timestamp, BodyTemperature temperature) {
+	public void storeBodyTemperature(Integer timestamp, BodyTemperature temperature) {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}
@@ -57,7 +57,7 @@ public class HealthDataStore {
 	 * 
 	 * @generated
 	 */
-	public void storeBloodSugarLevel(int timestamp, BloodSugarLevel sugarLevel) {
+	public void storeBloodSugarLevel(Integer timestamp, BloodSugarLevel sugarLevel) {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}
@@ -70,7 +70,7 @@ public class HealthDataStore {
 	 * 
 	 * @generated
 	 */
-	public void storeBloodPressure(int timestamp, BloodPressure bloodPressure) {
+	public void storeBloodPressure(Integer timestamp, BloodPressure bloodPressure) {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}

@@ -21,13 +21,13 @@ public class BloodSugarSensorController implements BloodSugarSensor {
 
 
 	@Override
-	public int getBatteryLevel() {
+	public BloodSugarLevel measureBloodSugar() {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}
 	
 	@Override
-	public BloodSugarLevel measureBloodSugar() {
+	public Integer getBatteryLevel() {
 		// ToDo: Implement this method.
 		throw new UnsupportedOperationException("This method is not yet implemented");
 	}

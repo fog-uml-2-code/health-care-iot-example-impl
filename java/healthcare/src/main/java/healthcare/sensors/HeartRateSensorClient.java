@@ -18,9 +18,9 @@ import io.micronaut.http.client.annotation.Client;
 public interface HeartRateSensorClient extends HeartRateSensor {
 
 	@Override
-	int getBatteryLevel();
+	Integer getHeartRate();
 	
 	@Override
-	int getHeartRate();
+	Integer getBatteryLevel();
 	
 }

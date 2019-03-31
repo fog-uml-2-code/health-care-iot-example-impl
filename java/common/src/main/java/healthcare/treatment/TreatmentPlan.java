@@ -15,24 +15,24 @@ import healthcare.models.Bolus;
  * 
  * @generated
  */
+ @Invariant(MaxHourlyBasalRate.class)
  @Invariant(MaxBolus.class)
  @Invariant(BasalRateLimits.class)
- @Invariant(MaxHourlyBasalRate.class)
 public class TreatmentPlan {
 
-	private int maxInsulinUnitsPerDay;
+	private Integer maxInsulinUnitsPerDay;
 	
-	private int maxHourlyBasalRate;
+	private Integer minHourlyBasalRate;
 	
-	private Bolus bolus;
+	private Integer maxUnitsPerBolus;
+	
+	private Integer maxInsulinUnitsPerHour;
 	
 	private BasalRate basalRate;
 	
-	private int minHourlyBasalRate;
+	private Integer maxHourlyBasalRate;
 	
-	private int maxInsulinUnitsPerHour;
-	
-	private int maxUnitsPerBolus;
+	private Bolus bolus;
 	
 	
 	/**
@@ -40,7 +40,7 @@ public class TreatmentPlan {
 	 * 
 	 * @generated
 	 */
-	public int getMaxInsulinUnitsPerDay() {
+	public Integer getMaxInsulinUnitsPerDay() {
 		return maxInsulinUnitsPerDay;
 	}
 	
@@ -49,44 +49,62 @@ public class TreatmentPlan {
 	 * 
 	 * @generated
 	 */
-	public void setMaxInsulinUnitsPerDay(int maxInsulinUnitsPerDay) {
+	public void setMaxInsulinUnitsPerDay(Integer maxInsulinUnitsPerDay) {
 		this.maxInsulinUnitsPerDay = maxInsulinUnitsPerDay;
 	}
 	
 	/**
-	 * @return the maxHourlyBasalRate
+	 * @return the minHourlyBasalRate
 	 * 
 	 * @generated
 	 */
-	public int getMaxHourlyBasalRate() {
-		return maxHourlyBasalRate;
+	public Integer getMinHourlyBasalRate() {
+		return minHourlyBasalRate;
 	}
 	
 	/**
-	 * @param maxHourlyBasalRate the maxHourlyBasalRate to set.
+	 * @param minHourlyBasalRate the minHourlyBasalRate to set.
 	 * 
 	 * @generated
 	 */
-	public void setMaxHourlyBasalRate(int maxHourlyBasalRate) {
-		this.maxHourlyBasalRate = maxHourlyBasalRate;
+	public void setMinHourlyBasalRate(Integer minHourlyBasalRate) {
+		this.minHourlyBasalRate = minHourlyBasalRate;
 	}
 	
 	/**
-	 * @return the bolus
+	 * @return the maxUnitsPerBolus
 	 * 
 	 * @generated
 	 */
-	public Bolus getBolus() {
-		return bolus;
+	public Integer getMaxUnitsPerBolus() {
+		return maxUnitsPerBolus;
 	}
 	
 	/**
-	 * @param bolus the bolus to set.
+	 * @param maxUnitsPerBolus the maxUnitsPerBolus to set.
 	 * 
 	 * @generated
 	 */
-	public void setBolus(Bolus bolus) {
-		this.bolus = bolus;
+	public void setMaxUnitsPerBolus(Integer maxUnitsPerBolus) {
+		this.maxUnitsPerBolus = maxUnitsPerBolus;
+	}
+	
+	/**
+	 * @return the maxInsulinUnitsPerHour
+	 * 
+	 * @generated
+	 */
+	public Integer getMaxInsulinUnitsPerHour() {
+		return maxInsulinUnitsPerHour;
+	}
+	
+	/**
+	 * @param maxInsulinUnitsPerHour the maxInsulinUnitsPerHour to set.
+	 * 
+	 * @generated
+	 */
+	public void setMaxInsulinUnitsPerHour(Integer maxInsulinUnitsPerHour) {
+		this.maxInsulinUnitsPerHour = maxInsulinUnitsPerHour;
 	}
 	
 	/**
@@ -108,57 +126,39 @@ public class TreatmentPlan {
 	}
 	
 	/**
-	 * @return the minHourlyBasalRate
+	 * @return the maxHourlyBasalRate
 	 * 
 	 * @generated
 	 */
-	public int getMinHourlyBasalRate() {
-		return minHourlyBasalRate;
+	public Integer getMaxHourlyBasalRate() {
+		return maxHourlyBasalRate;
 	}
 	
 	/**
-	 * @param minHourlyBasalRate the minHourlyBasalRate to set.
+	 * @param maxHourlyBasalRate the maxHourlyBasalRate to set.
 	 * 
 	 * @generated
 	 */
-	public void setMinHourlyBasalRate(int minHourlyBasalRate) {
-		this.minHourlyBasalRate = minHourlyBasalRate;
+	public void setMaxHourlyBasalRate(Integer maxHourlyBasalRate) {
+		this.maxHourlyBasalRate = maxHourlyBasalRate;
 	}
 	
 	/**
-	 * @return the maxInsulinUnitsPerHour
+	 * @return the bolus
 	 * 
 	 * @generated
 	 */
-	public int getMaxInsulinUnitsPerHour() {
-		return maxInsulinUnitsPerHour;
+	public Bolus getBolus() {
+		return bolus;
 	}
 	
 	/**
-	 * @param maxInsulinUnitsPerHour the maxInsulinUnitsPerHour to set.
+	 * @param bolus the bolus to set.
 	 * 
 	 * @generated
 	 */
-	public void setMaxInsulinUnitsPerHour(int maxInsulinUnitsPerHour) {
-		this.maxInsulinUnitsPerHour = maxInsulinUnitsPerHour;
-	}
-	
-	/**
-	 * @return the maxUnitsPerBolus
-	 * 
-	 * @generated
-	 */
-	public int getMaxUnitsPerBolus() {
-		return maxUnitsPerBolus;
-	}
-	
-	/**
-	 * @param maxUnitsPerBolus the maxUnitsPerBolus to set.
-	 * 
-	 * @generated
-	 */
-	public void setMaxUnitsPerBolus(int maxUnitsPerBolus) {
-		this.maxUnitsPerBolus = maxUnitsPerBolus;
+	public void setBolus(Bolus bolus) {
+		this.bolus = bolus;
 	}
 	
 	

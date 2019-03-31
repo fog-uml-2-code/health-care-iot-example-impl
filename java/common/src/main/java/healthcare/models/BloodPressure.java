@@ -15,9 +15,9 @@ import pusztai.thomas.architecture.fog.validation.*;
  */
 public class BloodPressure {
 
-	private int mmHgSystolic;
+	private Integer mmHgSystolic;
 	
-	private int mmHgDiastolic;
+	private Integer mmHgDiastolic;
 	
 	
 	/**
@@ -25,7 +25,7 @@ public class BloodPressure {
 	 * 
 	 * @generated
 	 */
-	public int getMmHgSystolic() {
+	public Integer getMmHgSystolic() {
 		return mmHgSystolic;
 	}
 	
@@ -34,7 +34,7 @@ public class BloodPressure {
 	 * 
 	 * @generated
 	 */
-	public void setMmHgSystolic(int mmHgSystolic) {
+	public void setMmHgSystolic(Integer mmHgSystolic) {
 		this.mmHgSystolic = mmHgSystolic;
 	}
 	
@@ -43,7 +43,7 @@ public class BloodPressure {
 	 * 
 	 * @generated
 	 */
-	public int getMmHgDiastolic() {
+	public Integer getMmHgDiastolic() {
 		return mmHgDiastolic;
 	}
 	
@@ -52,7 +52,7 @@ public class BloodPressure {
 	 * 
 	 * @generated
 	 */
-	public void setMmHgDiastolic(int mmHgDiastolic) {
+	public void setMmHgDiastolic(Integer mmHgDiastolic) {
 		this.mmHgDiastolic = mmHgDiastolic;
 	}
 	
