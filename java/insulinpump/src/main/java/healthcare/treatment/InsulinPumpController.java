@@ -2,6 +2,7 @@ package healthcare.treatment;
 
 // Start of user code for imports
 import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 
 import io.micronaut.scheduling.TaskExecutors;
@@ -37,6 +38,7 @@ public class InsulinPumpController implements InsulinPump {
 	public InsulinPumpController(@Named(TaskExecutors.SCHEDULED) TaskScheduler taskScheduler) {
 		this.taskScheduler = taskScheduler;
 		currState = new InsulinPumpState();
+		currState.setCurrentTime((int) Instant.now().getEpochSecond());
 		currState.setTimeLastBolusEnded(0);
 		currState.setInsulinUnitsAdministeredLast24Hours(0);
 		currState.setInsulinUnitsAdministeredLastHour(0);
@@ -46,8 +48,8 @@ public class InsulinPumpController implements InsulinPump {
 		plan.setBasalRate(defaultRate);
 		plan.setMaxHourlyBasalRate(7);
 		plan.setMaxInsulinUnitsPerDay(100);
-		plan.setMaxInsulinUnitsPerHour(15);
-		plan.setMaxUnitsPerBolus(10);
+		plan.setMaxInsulinUnitsPerHour(20);
+		plan.setMaxUnitsPerBolus(15);
 		plan.setMinHourlyBasalRate(1);
 		currState.setTreatmentPlan(plan);
 	}
