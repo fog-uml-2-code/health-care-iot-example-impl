@@ -35,7 +35,7 @@ public class StoreHeartRate_call implements CallOperationActionHandler<StoreHear
 		StoreHeartRate_callParams params = new StoreHeartRate_callParams();
 		if (heartRateM != null && heartRateM.getMeasurement() != null) {
 			params.setBpm(heartRateM.getMeasurement());
-			params.setTimestamp((int) heartRateM.getMeasuredAt().toEpochMilli());
+			params.setTimestamp((int) heartRateM.getMeasuredAt().getEpochSecond());
 		}
 		return params;
 	}

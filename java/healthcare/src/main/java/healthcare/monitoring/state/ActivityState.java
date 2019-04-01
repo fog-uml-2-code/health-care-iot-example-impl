@@ -23,7 +23,7 @@ public class ActivityState {
 	private final AtomicReference<Measurement<BodyTemperature>> bodyTemp = new AtomicReference<>();
 
 	private final AtomicReference<Instant> lastSubmissionToDoctor = new AtomicReference<>(Instant.now());
-	private final AtomicReference<Instant> lastCheckForTreatmentUpdates = new AtomicReference<>(Instant.MIN);
+	private final AtomicReference<Instant> lastCheckForTreatmentUpdates = new AtomicReference<>(Instant.now().minusSeconds(60 * 60 * 48));
 	private final AtomicBoolean healthStatusCritical = new AtomicBoolean(false);
 
 	public Measurement<Integer> getLastHeartRate() {

@@ -43,13 +43,13 @@ public class StoreData implements OpaqueActionHandler {
 		Measurement<BloodSugarLevel> bloodSugarM = activityState.getLastBloodSugarLevel();
 
 		if (bloodPressureM != null) {
-			healthDataStore.storeBloodPressure((int) bloodPressureM.getMeasuredAt().toEpochMilli(), bloodPressureM.getMeasurement());
+			healthDataStore.storeBloodPressure((int) bloodPressureM.getMeasuredAt().getEpochSecond(), bloodPressureM.getMeasurement());
 		}
 		if (bodyTempM != null) {
-			healthDataStore.storeBodyTemperature((int) bodyTempM.getMeasuredAt().toEpochMilli(), bodyTempM.getMeasurement());
+			healthDataStore.storeBodyTemperature((int) bodyTempM.getMeasuredAt().getEpochSecond(), bodyTempM.getMeasurement());
 		}
 		if (bloodSugarM != null) {
-			healthDataStore.storeBloodSugarLevel((int) bloodSugarM.getMeasuredAt().toEpochMilli(), bloodSugarM.getMeasurement());
+			healthDataStore.storeBloodSugarLevel((int) bloodSugarM.getMeasuredAt().getEpochSecond(), bloodSugarM.getMeasurement());
 		}
 	}
 
