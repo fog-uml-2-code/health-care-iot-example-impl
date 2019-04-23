@@ -19,10 +19,11 @@ public class BasalRateLimits implements MethodInterceptor<TreatmentPlan, Object>
 	public Object intercept(MethodInvocationContext<TreatmentPlan, Object> context) {
 		TreatmentPlan self = context.getTarget();
 		
+		Object ret = context.proceed();
 		boolean validationResult = self.getBasalRate().getInsulinUnitsPerHour() >=  self.getMinHourlyBasalRate() &&
-     self.getBasalRate().getInsulinUnitsPerHour() <=  self.getMaxHourlyBasalRate();
+		     self.getBasalRate().getInsulinUnitsPerHour() <=  self.getMaxHourlyBasalRate();
 		if (validationResult) {
-			return context.proceed();
+			return ret;
 		} else {
 			throw new RuntimeException("The constraint basalRateLimits has been violated.");
 		}

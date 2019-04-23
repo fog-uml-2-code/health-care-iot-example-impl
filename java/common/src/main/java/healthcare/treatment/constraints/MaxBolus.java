@@ -19,9 +19,10 @@ public class MaxBolus implements MethodInterceptor<TreatmentPlan, Object> {
 	public Object intercept(MethodInvocationContext<TreatmentPlan, Object> context) {
 		TreatmentPlan self = context.getTarget();
 		
+		Object ret = context.proceed();
 		boolean validationResult = self.getBolus().getInsulinUnits() <=  self.getMaxUnitsPerBolus();
 		if (validationResult) {
-			return context.proceed();
+			return ret;
 		} else {
 			throw new RuntimeException("The constraint maxBolus has been violated.");
 		}

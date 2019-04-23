@@ -20,18 +20,18 @@ public class PreStartBolus implements MethodInterceptor<InsulinPump, Object> {
 		InsulinPump self = context.getTarget();
 		Bolus bolus = (Bolus) context.getParameterValueMap().get("bolus");
 		boolean validationResult = 
-
-
-self.getCurrentState().getBolus() ==  null &&
-
-
-self.getCurrentState().getCurrentTime() -  self.getCurrentState().getTimeLastBolusEnded() >= 3600000 &&
-
-
-self.getCurrentState().getInsulinUnitsAdministeredLastHour() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerHour() &&
-
-
-self.getCurrentState().getInsulinUnitsAdministeredLast24Hours() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerDay();
+		
+		
+		self.getCurrentState().getBolus() ==  null &&
+		
+		
+		self.getCurrentState().getCurrentTime() -  self.getCurrentState().getTimeLastBolusEnded() >= 3600000 &&
+		
+		
+		self.getCurrentState().getInsulinUnitsAdministeredLastHour() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerHour() &&
+		
+		
+		self.getCurrentState().getInsulinUnitsAdministeredLast24Hours() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerDay();
 		if (validationResult) {
 			return context.proceed();
 		} else {

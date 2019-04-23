@@ -20,7 +20,7 @@ public class PreAdjustBasalRate implements MethodInterceptor<InsulinPump, Object
 		InsulinPump self = context.getTarget();
 		BasalRate rate = (BasalRate) context.getParameterValueMap().get("rate");
 		boolean validationResult = ((Number) rate.getInsulinUnitsPerHour()).intValue() >=  self.getCurrentState().getTreatmentPlan().getMinHourlyBasalRate() &&
-    ((Number) rate.getInsulinUnitsPerHour()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxHourlyBasalRate();
+		    ((Number) rate.getInsulinUnitsPerHour()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxHourlyBasalRate();
 		if (validationResult) {
 			return context.proceed();
 		} else {

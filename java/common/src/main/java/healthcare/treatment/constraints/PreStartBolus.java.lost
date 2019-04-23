@@ -1,5 +1,5 @@
 
-Sun Mar 31 18:08:58 CEST 2019
+Tue Apr 23 13:07:48 CEST 2019
 ================================================================================
 package healthcare.treatment.constraints;
 
@@ -23,18 +23,18 @@ public class PreStartBolus implements MethodInterceptor<InsulinPump, Object> {
 		InsulinPump self = context.getTarget();
 		Bolus bolus = (Bolus) context.getParameterValueMap().get("bolus");
 		boolean validationResult = 
-
-
-self.getCurrentState().getBolus() ==  null &&
-
-
-self.getCurrentState().getCurrentTime() -  self.getCurrentState().getTimeLastBolusEnded() >= 3600000 &&
-
-
-self.getCurrentState().getInsulinUnitsAdministeredLastHour() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerHour() &&
-
-
-self.getCurrentState().getInsulinUnitsAdministeredLast24Hours() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerDay();
+		
+		
+		self.getCurrentState().getBolus() ==  null &&
+		
+		
+		self.getCurrentState().getCurrentTime() -  self.getCurrentState().getTimeLastBolusEnded() >= 3600000 &&
+		
+		
+		self.getCurrentState().getInsulinUnitsAdministeredLastHour() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerHour() &&
+		
+		
+		self.getCurrentState().getInsulinUnitsAdministeredLast24Hours() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerDay();
 		if (validationResult) {
 			return context.proceed();
 		} else {
@@ -44,7 +44,7 @@ self.getCurrentState().getInsulinUnitsAdministeredLast24Hours() + ((Number) bolu
 
 }
 
-Sun Mar 31 18:08:58 CEST 2019
+Tue Apr 23 13:07:48 CEST 2019
 ================================================================================
 package healthcare.treatment.constraints;
 
@@ -68,18 +68,18 @@ public class PreStartBolus implements MethodInterceptor<InsulinPump, Object> {
 		InsulinPump self = context.getTarget();
 		Bolus bolus = (Bolus) context.getParameterValueMap().get("bolus");
 		boolean validationResult = 
-
-
-self.getCurrentState().getBolus() ==  null &&
-
-
-self.getCurrentState().getCurrentTime() -  self.getCurrentState().getTimeLastBolusEnded() >= 3600000 &&
-
-
-self.getCurrentState().getInsulinUnitsAdministeredLastHour() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerHour() &&
-
-
-self.getCurrentState().getInsulinUnitsAdministeredLast24Hours() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerDay();
+		
+		
+		self.getCurrentState().getBolus() ==  null &&
+		
+		
+		self.getCurrentState().getCurrentTime() -  self.getCurrentState().getTimeLastBolusEnded() >= 3600000 &&
+		
+		
+		self.getCurrentState().getInsulinUnitsAdministeredLastHour() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerHour() &&
+		
+		
+		self.getCurrentState().getInsulinUnitsAdministeredLast24Hours() + ((Number) bolus.getInsulinUnits()).intValue() <=  self.getCurrentState().getTreatmentPlan().getMaxInsulinUnitsPerDay();
 		if (validationResult) {
 			return context.proceed();
 		} else {

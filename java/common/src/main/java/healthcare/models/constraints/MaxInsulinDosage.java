@@ -19,10 +19,11 @@ public class MaxInsulinDosage implements MethodInterceptor<InsulinPumpState, Obj
 	public Object intercept(MethodInvocationContext<InsulinPumpState, Object> context) {
 		InsulinPumpState self = context.getTarget();
 		
+		Object ret = context.proceed();
 		boolean validationResult = self.getInsulinUnitsAdministeredLast24Hours() <=  self.getTreatmentPlan().getMaxInsulinUnitsPerDay() && 
-     self.getInsulinUnitsAdministeredLastHour() <=  self.getTreatmentPlan().getMaxInsulinUnitsPerHour();
+		     self.getInsulinUnitsAdministeredLastHour() <=  self.getTreatmentPlan().getMaxInsulinUnitsPerHour();
 		if (validationResult) {
-			return context.proceed();
+			return ret;
 		} else {
 			throw new RuntimeException("The constraint maxInsulinDosage has been violated.");
 		}
